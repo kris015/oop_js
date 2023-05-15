@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="kockaForma">
+  <label for="duzinaStranice">Dužina stranice:</label>
+  <input type="number" id="duzinaStranice" name="duzinaStranice" required>
+  <button type="submit">Kreiraj kocku</button>
+</form>
+
+<div id="rezultati"></div>
+</body>
+</html>
+<script>
+    class Kocka {
+  constructor(a) {
+    this.a = a;
+  }
+  
+  izracunajZapreminu() {
+    return this.a * this.a * this.a;
+  }
+  
+  izracunajUkupnuDuzinuStranica() {
+    return 12 * this.a;
+  }
+}
+
+document.getElementById("kockaForma").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  // Dobijanje unesene dužine stranice
+  let duzinaStranice = parseFloat(document.getElementById("duzinaStranice").value);
+  
+  // Kreiranje objekta kocke
+  let kocka = new Kocka(duzinaStranice);
+  
+  // Prikaz rezultata
+  let rezultatiDiv = document.getElementById("rezultati");
+  rezultatiDiv.innerHTML = "";
+  rezultatiDiv.innerHTML += "Zapremina kocke: " + kocka.izracunajZapreminu() + "<br>";
+  rezultatiDiv.innerHTML += "Ukupna dužina stranica kocke: " + kocka.izracunajUkupnuDuzinuStranica() + "<br>";
+});
+
+</script>
